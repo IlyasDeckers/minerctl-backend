@@ -77907,41 +77907,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -77990,202 +77955,119 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "row" }, [
+  return _c("div", [
     _c("div", { staticClass: "col-md-12" }, [
-      _c("div", { staticClass: "col-lg-8 col-lg-offset-2 col-md-12" }, [
-        _c("div", { staticClass: "card" }, [
-          _vm._m(0),
-          _vm._v(" "),
-          _c("div", { staticClass: "card-content" }, [
-            _vm._m(1),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                directives: [
-                  {
-                    name: "show",
-                    rawName: "v-show",
-                    value: _vm.request,
-                    expression: "request"
-                  }
-                ],
-                staticClass: "col-md-8"
-              },
-              [
+      _c(
+        "form",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.request,
+              expression: "request"
+            }
+          ],
+          staticClass: "form-horizontal",
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              _vm.generateAddress()
+            }
+          }
+        },
+        [
+          _c("div", { staticClass: "col-md-12" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-12" }, [
                 _c(
-                  "form",
-                  {
-                    staticClass: "form-horizontal",
-                    on: {
-                      submit: function($event) {
-                        $event.preventDefault()
-                        _vm.generateAddress()
-                      }
-                    }
-                  },
+                  "div",
+                  { staticClass: "form-group label-floating is-empty" },
                   [
-                    _c("div", { staticClass: "row" }, [
-                      _c("label", { staticClass: "col-md-3 label-on-left" }, [
-                        _vm._v("Password")
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-md-9" }, [
-                        _c(
-                          "div",
-                          { staticClass: "form-group label-floating is-empty" },
-                          [
-                            _c("label", { staticClass: "control-label" }),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.wallet.password,
-                                  expression: "wallet.password"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: { type: "password", required: "" },
-                              domProps: { value: _vm.wallet.password },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(
-                                    _vm.wallet,
-                                    "password",
-                                    $event.target.value
-                                  )
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c("span", { staticClass: "material-input" })
-                          ]
-                        )
-                      ])
-                    ]),
+                    _c("label", { staticClass: "control-label" }),
                     _vm._v(" "),
-                    _vm._m(2),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.wallet.password,
+                          expression: "wallet.password"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "password",
+                        placeholder: "Choose a secure password for your wallet",
+                        required: ""
+                      },
+                      domProps: { value: _vm.wallet.password },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.wallet, "password", $event.target.value)
+                        }
+                      }
+                    }),
                     _vm._v(" "),
-                    _vm._m(3)
+                    _c("span", { staticClass: "material-input" })
                   ]
                 )
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                directives: [
-                  {
-                    name: "show",
-                    rawName: "v-show",
-                    value: _vm.download,
-                    expression: "download"
-                  }
-                ],
-                staticClass: "col-md-12"
-              },
-              [
-                _c("div", { staticClass: "row text-center" }, [
-                  _vm._m(4),
-                  _vm._v(" "),
-                  _vm._m(5),
-                  _vm._v(" "),
-                  _c("pre", [_vm._v(_vm._s(_vm.wallet.encrypted.address))]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group form-button" }, [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-fill btn-info",
-                        attrs: { type: "submit" },
-                        on: {
-                          click: function($event) {
-                            _vm.downloadKeystore()
-                          }
-                        }
-                      },
-                      [_vm._v("Download Keystore")]
-                    )
-                  ])
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                directives: [
-                  {
-                    name: "show",
-                    rawName: "v-show",
-                    value: _vm.request,
-                    expression: "request"
-                  }
-                ],
-                staticClass: "col-md-4"
-              },
-              [_vm._m(6)]
-            )
+              ])
+            ])
           ]),
           _vm._v(" "),
-          _vm._m(7)
-        ])
-      ])
-    ])
+          _vm._m(0)
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.download,
+              expression: "download"
+            }
+          ],
+          staticClass: "col-md-12"
+        },
+        [
+          _c("div", { staticClass: "row text-center" }, [
+            _vm._m(1),
+            _vm._v(" "),
+            _vm._m(2),
+            _vm._v(" "),
+            _c("pre", [_vm._v(_vm._s(_vm.wallet.encrypted.address))]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group form-button" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-fill btn-info",
+                  attrs: { type: "submit" },
+                  on: {
+                    click: function($event) {
+                      _vm.downloadKeystore()
+                    }
+                  }
+                },
+                [_vm._v("Download Keystore")]
+              )
+            ])
+          ])
+        ]
+      )
+    ]),
+    _vm._v(" "),
+    _vm._m(3)
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "card-header card-header-icon",
-        attrs: { "data-background-color": "rose" }
-      },
-      [_c("i", { staticClass: "material-icons" }, [_vm._v("perm_identity")])]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("h4", { staticClass: "card-title" }, [
-      _vm._v("Generate a new ethereum wallet-\n                        "),
-      _c("small", { staticClass: "category" }, [
-        _vm._v("Keep this information in a secure place")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "checkbox form-horizontal-checkbox col-md-12 text-center"
-      },
-      [
-        _c("label", [
-          _c("input", {
-            attrs: { type: "checkbox", name: "optionsCheckboxes", required: "" }
-          }),
-          _vm._v(
-            " I understand the potential risks\n                                "
-          )
-        ])
-      ]
-    )
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -78219,25 +78101,6 @@ var staticRenderFns = [
     return _c("p", [
       _c("b", [_vm._v("Do not lose this file and chosen password!")]),
       _vm._v(" It cannot be recovered! ")
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("blockquote", [
-      _vm._v("We cannot recover your funds or freeze your account... "),
-      _c(
-        "a",
-        {
-          attrs: {
-            href: "#",
-            "data-toggle": "modal",
-            "data-target": "#secwarn"
-          }
-        },
-        [_vm._v("Read More")]
-      )
     ])
   },
   function() {

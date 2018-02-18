@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Claymore;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
-
+use Claymore;
 use Wallets;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -29,7 +29,15 @@ class HomeController extends Controller
      */
     public function index()
     {
+        if (!Auth::user()->wallets->first()) {
+            return view('auth.step2');
+        }
         return view('dashboard');
+    }
+
+    public function step2() 
+    {
+        return view('auth.step2');
     }
 
 }

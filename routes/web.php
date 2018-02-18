@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+Route::get('/step2', 'HomeController@step2')->name('step2');
 
 Route::get('/user/profile', 'UserController@index')->name('userProfile');
 
@@ -28,6 +29,7 @@ Route::get('/mining/delete', 'Pools\PageController@index')->name('deletePool');*
 Route::get('/wallets', 'Wallet\WalletController@index');
 Route::get('/wallet/create', 'Wallet\WalletController@createWallet')->name('createWallet');
 Route::get('/wallet/{walletAdress}', 'Wallet\WalletController@index')->name('wallets');
+Route::post('/wallet/add', 'Wallet\WalletController@addWallet')->name('addWallet');
 
 
 Route::get('/rigs', 'Rigs\RigController@index')->name('rigs');

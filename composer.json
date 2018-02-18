@@ -17,6 +17,7 @@
         "laravel/passport": "4.0.3",
         "laravel/tinker": "~1.0",
         "milon/barcode": "^5.2",
+        "pusher/pusher-http-laravel": "^4.0",
         "thiagof/laravelrpc": "^0.2.2",
         "uxweb/sweet-alert": "^1.4"
     },
