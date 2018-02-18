@@ -173,6 +173,7 @@ return [
         Fx3costa\LaravelChartJs\Providers\ChartjsServiceProvider::class,
         Milon\Barcode\BarcodeServiceProvider::class,
         Barryvdh\Cors\ServiceProvider::class,
+        Pusher\Laravel\PusherServiceProvider::class,
 
         App\Acme\Wallets\WalletsServiceProvider::class,
 
@@ -238,6 +239,7 @@ return [
         'Alert' => UxWeb\SweetAlert\SweetAlert::class,
         'DNS1D' => Milon\Barcode\Facades\DNS1DFacade::class,
         'DNS2D' => Milon\Barcode\Facades\DNS2DFacade::class,
+        'Pusher' => Pusher\Laravel\Facades\Pusher::class,
 
         'Wallets' => App\Acme\Facades\WalletsFacade::class,
         'wei2eth' => App\Helpers\wei2eth::class,

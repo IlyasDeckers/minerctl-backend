@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Rigs;
 
 use Auth;
 use Claymore;
+use Pusher;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -26,6 +27,8 @@ class RigController extends Controller
      */
     public function index()
     {
+        dd(Pusher::get_channels()); 
+
         $rigs = new Claymore;
         return view('rigs', [
             'rigs'       => $rigs->miner_getstat1()
