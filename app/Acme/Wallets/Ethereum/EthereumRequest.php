@@ -6,7 +6,7 @@ use wei2eth;
 use Countable;
 use App\Acme\Wallets\Interfaces\WalletRequestInterface;
 
-class EthereumRequest implements WalletRequestInterface
+class EthereumRequest
 {
 	public $apiAddress = 'https://api.etherscan.io/api?';
 
