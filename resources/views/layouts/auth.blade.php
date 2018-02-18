@@ -19,6 +19,15 @@
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script>
+        window.Laravel = <?php echo json_encode([
+            'csrfToken' => csrf_token(),
+        ]); ?>
+
+        @if(Auth::user())
+        const userId = {{ Auth::user()->id }}
+        @endif
+    </script>
 </head>
 
 <body class="off-canvas-sidebar">
@@ -31,15 +40,22 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href=" ../dashboard.html ">MinerC.TL</a>
+                <a class="navbar-brand" href="/">MinerC.TL</a>
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
+                    @auth
                     <li>
-                        <a href="../dashboard.html">
-                            <i class="material-icons">dashboard</i> Home
+                        <a href="{{ route('dashboard') }}">
+                            <i class="material-icons">dashboard</i> Dashboard
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <i class="material-icons">dashboard</i> Logout
+                        </a>
+                    </li>
+                    @else
                     <li class="">
                         <a href="{{ route('register') }}">
                             <i class="material-icons">person_add</i> Register
@@ -50,13 +66,13 @@
                             <i class="material-icons">fingerprint</i> Login
                         </a>
                     </li>
-                    <li class="">
+                    @endif
                 </ul>
             </div>
         </div>
     </nav>
-    <div class="wrapper wrapper-full-page">
-        <div class="full-page {{ Route::getCurrentRoute()->getName() }}-page" filter-color="black" data-image="/img/login.jpeg">
+    <div class="wrapper wrapper-full-page" id="app">
+        <div class="full-page register-page" filter-color="black" data-image="/img/login.jpeg">
             <!--   you can change the color of the filter page using: data-color="blue | purple | green | orange | red | rose " -->
 
             @yield('content')
@@ -88,10 +104,15 @@
             </footer>
         </div>
     </div>
+    <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+        {{ csrf_field() }}
+    </form>
 </body>
+
 <!--   Core JS Files   -->
 <script src="/js/jquery-3.2.1.min.js" type="text/javascript"></script>
 <script src="/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="/js/app.js"></script>
 <script src="/js/material.min.js" type="text/javascript"></script>
 <script src="/js/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
 <!-- Include a polyfill for ES6 Promises (optional) for IE11, UC Browser and Android browser support SweetAlert -->

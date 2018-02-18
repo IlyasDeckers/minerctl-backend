@@ -51,9 +51,26 @@ class WalletController extends Controller
         return view('createwallet');
     }
 
-    public function addAddress(Request $request)
+    public function addWallet(Request $request)
     {
-        //
+        $w = new Wallet();
+        if (strpos($request->address, '0x') !== false) { 
+            $address = $request->address; 
+        } else {
+            $address = '0x' . $request->address; 
+        }
+        $w->address = $address;
+        $w->currency = 'eth';
+        $w->user_id = Auth::user()->id;
+
+        $w->save();
+
+        if (Wallets::getTransactions($address) === []) {
+            Wallet::where('address', $address)->delete();
+            return redirect('/step2')->with('walletError', 'Invalid address!');;
+        }
+
+        return redirect('/dashboard');
     }
 
     public function createTransaction(Request $request)
