@@ -27,8 +27,6 @@ class RigController extends Controller
      */
     public function index()
     {
-        dd(Pusher::get_channels()); 
-
         $rigs = new Claymore;
         return view('rigs', [
             'rigs'       => $rigs->miner_getstat1()
