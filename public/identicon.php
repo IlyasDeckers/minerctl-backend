@@ -1,5 +1,5 @@
 <?php
-
+//Âini_set('display_errors', 1);
 /* generate sprite for corners and sides */
 function getsprite($shape,$R,$G,$B,$rotation) {
 	global $spriteZ;

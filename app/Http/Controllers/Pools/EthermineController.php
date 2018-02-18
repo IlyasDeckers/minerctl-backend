@@ -29,7 +29,7 @@ class EthermineController extends Controller
             ->request($method, $this->url . $this->address . '/' . $function)
             ->getBody()
         );
-            
+
         return $res->data;
     }
 }
