@@ -103,7 +103,7 @@ class EthereumRequest
      * @param object $request 
      * @return object/string
      */
-    public function sendRequest(Object $request)
+    public function sendRequest($request)
     {
         return Wallets::request(
         	$this->formatUrl($request)
@@ -116,7 +116,7 @@ class EthereumRequest
 	 * @param object $EthereumRequest 
 	 * @return string
 	 */
-	public function formatUrl(Object $EthereumRequest) 
+	public function formatUrl($EthereumRequest) 
 	{
         $url = $this->apiAddress;
         foreach ($EthereumRequest as $k => $v) {
