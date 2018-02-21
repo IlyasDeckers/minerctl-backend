@@ -1,27 +1,14 @@
 <?php
-	/**
-	 * Ethereum JSON-RPC interface
-	 *
-	 * See Ethereum API documentation for more information:
-	 * http://ethereum.gitbooks.io/frontier-guide/content/rpc.html
-	 */
-
 namespace App\Acme\Api;
+
+use Exception;
 
 class Ethereum extends JSONRPC
 {
 	private function ether_request($method, $params=array())
 	{
-		try 
-		{
-			$ret = $this->request($method, $params);
-			dd($ret);
-			return $ret->result;
-		}
-		catch(RPCException $e) 
-		{
-			throw $e;
-		}
+		$ret = $this->rpcRequest($method, $params);
+		return $ret['result'];
 	}
 	
 	private function decode_hex($input)
@@ -35,62 +22,62 @@ class Ethereum extends JSONRPC
 		return $input;
 	}
 	
-	function web3_clientVersion()
+	public function web3_clientVersion()
 	{
 		return $this->ether_request(__FUNCTION__);
 	}
 	
-	function web3_sha3($input)
+	public function web3_sha3($input)
 	{
 		return $this->ether_request(__FUNCTION__, array($input));
 	}
 	
-	function net_version()
+	public function net_version()
 	{
 		return $this->ether_request(__FUNCTION__);
 	}
 	
-	function net_listening()
+	public function net_listening()
 	{
 		return $this->ether_request(__FUNCTION__);
 	}
 	
-	function net_peerCount()
+	public function net_peerCount()
 	{
 		return $this->ether_request(__FUNCTION__);
 	}
 	
-	function eth_protocolVersion()
+	public function eth_protocolVersion()
 	{
 		return $this->ether_request(__FUNCTION__);
 	}
 	
-	function eth_coinbase()
+	public function eth_coinbase()
 	{
 		return $this->ether_request(__FUNCTION__);
 	}
 	
-	function eth_mining()
+	public function eth_mining()
 	{
 		return $this->ether_request(__FUNCTION__);
 	}
 	
-	function eth_hashrate()
+	public function eth_hashrate()
 	{
 		return $this->ether_request(__FUNCTION__);
 	}
 	
-	function eth_gasPrice()
+	public function eth_gasPrice()
 	{
 		return $this->ether_request(__FUNCTION__);
 	}
 	
-	function eth_accounts()
+	public function eth_accounts()
 	{
 		return $this->ether_request(__FUNCTION__);
 	}
 	
-	function eth_blockNumber($decode_hex=FALSE)
+	public function eth_blockNumber($decode_hex=FALSE)
 	{
 		$block = $this->ether_request(__FUNCTION__);
 		
@@ -100,8 +87,8 @@ class Ethereum extends JSONRPC
 		return $block;
 	}
 	
-	function eth_getBalance($address, $block='latest', $decode_hex=FALSE)
-	{
+	public function eth_getBalance($address, $block='latest', $decode_hex=false)
+	{	
 		$balance = $this->ether_request(__FUNCTION__, array($address, $block));
 		
 		if($decode_hex)
@@ -110,12 +97,12 @@ class Ethereum extends JSONRPC
 		return $balance;
 	}
 	
-	function eth_getStorageAt($address, $at, $block='latest')
+	public function eth_getStorageAt($address, $at, $block='latest')
 	{
 		return $this->ether_request(__FUNCTION__, array($address, $at, $block));
 	}
 	
-	function eth_getTransactionCount($address, $block='latest', $decode_hex=FALSE)
+	public function eth_getTransactionCount($address, $block='latest', $decode_hex=FALSE)
 	{
 		$count = $this->ether_request(__FUNCTION__, array($address, $block));
         
@@ -125,37 +112,37 @@ class Ethereum extends JSONRPC
         return $count;   
 	}
 	
-	function eth_getBlockTransactionCountByHash($tx_hash)
+	public function eth_getBlockTransactionCountByHash($tx_hash)
 	{
 		return $this->ether_request(__FUNCTION__, array($tx_hash));
 	}
 	
-	function eth_getBlockTransactionCountByNumber($tx='latest')
+	public function eth_getBlockTransactionCountByNumber($tx='latest')
 	{
 		return $this->ether_request(__FUNCTION__, array($tx));
 	}
 	
-	function eth_getUncleCountByBlockHash($block_hash)
+	public function eth_getUncleCountByBlockHash($block_hash)
 	{
 		return $this->ether_request(__FUNCTION__, array($block_hash));
 	}
 	
-	function eth_getUncleCountByBlockNumber($block='latest')
+	public function eth_getUncleCountByBlockNumber($block='latest')
 	{
 		return $this->ether_request(__FUNCTION__, array($block));
 	}
 	
-	function eth_getCode($address, $block='latest')
+	public function eth_getCode($address, $block='latest')
 	{
 		return $this->ether_request(__FUNCTION__, array($address, $block));
 	}
 	
-	function eth_sign($address, $input)
+	public function eth_sign($address, $input)
 	{
 		return $this->ether_request(__FUNCTION__, array($address, $input));
 	}
 	
-	function eth_sendTransaction($transaction)
+	public function eth_sendTransaction($transaction)
 	{
 		if(!is_a($transaction, 'Ethereum_Transaction'))
 		{
@@ -167,7 +154,7 @@ class Ethereum extends JSONRPC
 		}
 	}
 	
-	function eth_call($message, $block)
+	public function eth_call($message, $block)
 	{
 		if(!is_a($message, 'Ethereum_Message'))
 		{
@@ -179,7 +166,7 @@ class Ethereum extends JSONRPC
 		}
 	}
 	
-	function eth_estimateGas($message, $block)
+	public function eth_estimateGas($message, $block)
 	{
 		if(!is_a($message, 'Ethereum_Message'))
 		{
@@ -191,42 +178,42 @@ class Ethereum extends JSONRPC
 		}
 	}
 	
-	function eth_getBlockByHash($hash, $full_tx=TRUE)
+	public function eth_getBlockByHash($hash, $full_tx=TRUE)
 	{
 		return $this->ether_request(__FUNCTION__, array($hash, $full_tx));
 	}
 	
-	function eth_getBlockByNumber($block='latest', $full_tx=TRUE)
+	public function eth_getBlockByNumber($block='latest', $full_tx=TRUE)
 	{
 		return $this->ether_request(__FUNCTION__, array($block, $full_tx));
 	}
 	
-	function eth_getTransactionByHash($hash)
+	public function eth_getTransactionByHash($hash)
 	{
 		return $this->ether_request(__FUNCTION__, array($hash));
 	}
 	
-	function eth_getTransactionByBlockHashAndIndex($hash, $index)
+	public function eth_getTransactionByBlockHashAndIndex($hash, $index)
 	{
 		return $this->ether_request(__FUNCTION__, array($hash, $index));
 	}
 	
-	function eth_getTransactionByBlockNumberAndIndex($block, $index)
+	public function eth_getTransactionByBlockNumberAndIndex($block, $index)
 	{
 		return $this->ether_request(__FUNCTION__, array($block, $index));
 	}
 	
-	function eth_getTransactionReceipt($tx_hash)
+	public function eth_getTransactionReceipt($tx_hash)
 	{
 		return $this->ether_request(__FUNCTION__, array($tx_hash));
 	}
 	
-	function eth_getUncleByBlockHashAndIndex($hash, $index)
+	public function eth_getUncleByBlockHashAndIndex($hash, $index)
 	{
 		return $this->ether_request(__FUNCTION__, array($hash, $index));
 	}
 	
-	function eth_getUncleByBlockNumberAndIndex($block, $index)
+	public function eth_getUncleByBlockNumberAndIndex($block, $index)
 	{
 		return $this->ether_request(__FUNCTION__, array($block, $index));
 	}
