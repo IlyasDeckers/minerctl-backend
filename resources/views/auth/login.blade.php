@@ -9,20 +9,13 @@
                     <div class="card-header text-center" data-background-color="rose">
                         <h4 class="card-title">Login</h4>
                         <div class="social-line">
-                            <a href="#" class="btn btn-just-icon btn-simple">
-                                <i class="fa fa-github"></i>
-                            </a>
-                            <a href="#" class="btn btn-just-icon btn-simple">
-                                <i class="fa fa-google-plus"></i>
-                            </a>
+                            
                         </div>
                     </div>
-                    <p class="category text-center">
-                        Or Be Classical
-                    </p>
                     <form class="form-horizontal" method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
                         <div class="card-content">
+                            <br>
                             <div class="input-group">
                                 <span class="input-group-addon">
                                     <i class="material-icons">email</i>

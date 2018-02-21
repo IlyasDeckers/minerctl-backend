@@ -18,7 +18,7 @@
                                 <div class="description">
                                     <h4 class="info-title">Monitor your mining rigs</h4>
                                     <p class="description">
-                                        We've created the marketing campaign of the website. It was a very interesting collaboration.
+                                        Monitor you daily profits, GPU temperature or hashrate. All features are free for all users.
                                     </p>
                                 </div>
                             </div>
@@ -29,7 +29,7 @@
                                 <div class="description">
                                     <h4 class="info-title">Open Source</h4>
                                     <p class="description">
-                                        We've developed the website with HTML5 and CSS3. The client has access to the code using GitHub.
+                                        Developer friendly! You can user, review or modify our codebase at your own will. 
                                     </p>
                                 </div>
                             </div>
@@ -38,27 +38,15 @@
                                     <i class="material-icons">group</i>
                                 </div>
                                 <div class="description">
-                                    <h4 class="info-title">User Friendly</h4>
+                                    <h4 class="info-title">Secure & transparent</h4>
                                     <p class="description">
-                                        There is also a Fully Customizable CMS Admin Dashboard for this product.
+                                        We do not share or store any sensitive information, MinerCTL cares about your privacy and security. 
                                     </p>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-5">
-                        {{-- <div class="social text-center">
-                            <button class="btn btn-just-icon btn-round btn-twitter">
-                                <i class="fa fa-twitter"></i>
-                            </button>
-                            <button class="btn btn-just-icon btn-round btn-dribbble">
-                                <i class="fa fa-dribbble"></i>
-                            </button>
-                            <button class="btn btn-just-icon btn-round btn-facebook">
-                                <i class="fa fa-facebook"> </i>
-                            </button>
-                            <h4> or be classical </h4>
-                        </div> --}}
                         <form class="form-horizontal" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
                             <div class="card-content">
@@ -99,8 +87,8 @@
                                 <!-- If you want to add a checkbox to this form, uncomment this code -->
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="optionsCheckboxes" required> I agree to the
-                                        <a href="#">terms and conditions</a>.
+                                        <!-- <input type="checkbox" name="optionsCheckboxes"> I agree to the
+                                        <a href="#">terms and conditions</a>. -->
                                     </label>
                                 </div>
                             </div>

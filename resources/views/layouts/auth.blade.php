@@ -14,7 +14,7 @@
     <!--  Material Dashboard CSS    -->
     <link href="/css/material-dashboard.css?v=1.2.1" rel="stylesheet" />
     <!--  CSS for Demo Purpose, don't include it in your project     -->
-    <link href="/css/demo.css" rel="stylesheet" />
+    <link href="/css/style.css" rel="stylesheet" />
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" />
@@ -79,26 +79,8 @@
 
             <footer class="footer">
                 <div class="container">
-                    <nav class="pull-left">
-                        <ul>
-                            <li>
-                                <a href="#">
-                                    Home
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Blog
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
                     <p class="copyright pull-right">
-                        &copy;
-                        <script>
-                            document.write(new Date().getFullYear())
-                        </script>
-                        <a href="http://www.creative-tim.com"> minerc.tl </a>, made with love for a better web
+                        <a href="https://minerctl.eu"> minerc.tl </a>, made with love for a better web
                     </p>
                 </div>
             </footer>
