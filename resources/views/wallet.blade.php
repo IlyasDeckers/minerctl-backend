@@ -58,8 +58,6 @@
                 </p>
             </div>
             <a href="#" class="btn btn-info btn-round" data-toggle="modal" data-target="#recieveModal">Recieve</a>
-            <a href="#" class="btn btn-primary btn-round" data-toggle="modal" data-target="#sendModal">Send</a>
-
 
             <!-- notice modal -->
             <div class="modal fade" id="recieveModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -103,7 +101,7 @@
     <div class="card">
         
         
-        <div class="card-header card-header-icon" data-background-color="rose">
+        <div class="card-header card-header-icon" data-background-color="blue">
             <i class="material-icons">insert_chart</i>
         </div>
         <div class="card-content table-responsive">
@@ -137,9 +135,9 @@
         </div>
     </div>
 </div>
-<div class="col-md-8">
+<div class="col-md-12">
     <div class="card" > 
-        <div class="card-header card-header-icon" data-background-color="rose">
+        <div class="card-header card-header-icon" data-background-color="blue">
             <i class="material-icons">insert_chart</i>
         </div>
         <div class="card-content table-responsive">
