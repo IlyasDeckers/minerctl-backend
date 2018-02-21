@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group form-button text-center">
-                    <button type="submit" class="btn btn-fill btn-rose">Generate Wallet</button>
+                    <button type="submit" class="btn btn-fill btn-info">Generate Wallet</button>
                 </div>
             </div>
         </div>
