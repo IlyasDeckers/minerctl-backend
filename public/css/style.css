@@ -12,6 +12,10 @@
     }
 }
 
+.modal-backdrop {
+    z-index: 0;
+}
+
 #map {
     position: relative;
     width: 100%;

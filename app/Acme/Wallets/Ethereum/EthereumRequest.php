@@ -118,9 +118,9 @@ class EthereumRequest
 	 */
 	public function formatUrl($EthereumRequest) 
 	{
-        $url = $this->apiAddress;
+		$url = $this->apiAddress;
         foreach ($EthereumRequest as $k => $v) {
-            if ($v !== null || $v !== $url) {
+            if ($v != $url) {
                 $url .= $k . '=' . $v . '&';
             }
         } 

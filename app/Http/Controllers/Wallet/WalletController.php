@@ -54,26 +54,27 @@ class WalletController extends Controller
 
   public function addWallet(Request $request)
   {
-    $w = new Wallet();
     if (strpos($request->address, '0x') !== false) { 
       $address = $request->address; 
     } else {
       $address = '0x' . $request->address; 
     }
-    $w->address = $address;
-    $w->currency = 'eth';
-    $w->user_id = Auth::user()->id;
 
     try {
+      $eth = new \App\Acme\Api\Ethereum(env('INFURA_URL'), '443');
+      $eth = $eth->eth_getBalance($address);
+    } catch (\Exception $e) {
+      return redirect()->back()->with('walletError', 'Invalid address!');
+    }
+
+    try {
+      $w = new Wallet();
+      $w->address = $address;
+      $w->currency = 'eth';
+      $w->user_id = Auth::user()->id;
       $w->save();
     } catch (Exception $e) {
       return redirect()->back()->with('walletError', 'This address is already present in our database!');
-    }
-
-
-    if (Wallets::getTransactions($address) === []) {
-      Wallet::where('address', $address)->delete();
-      return redirect()->back()->with('walletError', 'Invalid address!');
     }
 
     return redirect('/dashboard');

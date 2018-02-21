@@ -67,7 +67,7 @@
                 </div>
                 <div class="card-footer">
                     <div class="stats">
-                        <i class="material-icons">local_offer</i> Tracked from ethermine.org
+                        <i class="material-icons">local_offer</i> Tracked from <a target="_blank" href="https://ethermine.org/miners/{{ $wallet->address }}">ethermine.org</a>
                     </div>
                 </div>
             </div>
@@ -92,13 +92,10 @@
         </div>
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header card-header-icon" data-background-color="rose">
-                    <i class="material-icons">insert_chart</i>
+                <div class="card-header">
+                <h4 class="card-title">Hashrate</h4>
                 </div>
                 <div class="card-content">
-                    <h4 class="card-title">Hashrate
-                        <small>- Chart</small>
-                    </h4>
                     {!! $chartjs->render() !!}
                 </div>
                 
@@ -106,9 +103,8 @@
         </div>
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header" data-background-color="orange">
+                <div class="card-header">
                     <h4 class="title">Payouts</h4>
-                    <p class="category">Recent payments from ethermine.org</p>
                 </div>
                 <div class="card-content table-responsive">
                     <table class="table table-hover">

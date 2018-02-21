@@ -26,7 +26,7 @@
             <div class="row text-center">
                 <h2>Save your <code>Keystore</code> File.</h2>
                 <p><b>Do not lose this file and chosen password!</b> It cannot be recovered! </p>
-                <pre>{{ wallet.encrypted.address }}</pre>
+                <pre><b>address:</b>{{ wallet.encrypted.address }}</pre>
                 <div class="form-group form-button">
                     <button type="submit" @click="downloadKeystore()" class="btn btn-fill btn-info">Download Keystore</button>
                 </div>

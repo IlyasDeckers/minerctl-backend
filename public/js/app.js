@@ -78042,7 +78042,10 @@ var render = function() {
             _vm._v(" "),
             _vm._m(2),
             _vm._v(" "),
-            _c("pre", [_vm._v(_vm._s(_vm.wallet.encrypted.address))]),
+            _c("pre", [
+              _c("b", [_vm._v("address:")]),
+              _vm._v(_vm._s(_vm.wallet.encrypted.address))
+            ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group form-button" }, [
               _c(

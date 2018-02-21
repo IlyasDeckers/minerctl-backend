@@ -5,5 +5,5 @@ use Illuminate\Support\Facades\Facade;
 
 class WalletsFacade extends Facade 
 {
-    protected static function getFacadeAccessor() { return 'wallets';}
+  protected static function getFacadeAccessor() { return 'wallets';}
 }
