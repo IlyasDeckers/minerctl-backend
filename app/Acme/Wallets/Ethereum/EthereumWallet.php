@@ -16,7 +16,7 @@ class EthereumWallet implements WalletInterface
      */
     public function __construct()
     {
-        $this->request = new EthereumRequest;
+        $this->createRequest = new EthereumRequest;
     }
 
     /**
@@ -27,10 +27,11 @@ class EthereumWallet implements WalletInterface
      */
     public function getBalance(String $walletAddress) 
     {   
-        $r = $this->request;
+        $r = $this->createRequest;
         $r->setWalletAddress($walletAddress);
         $r->setModule('account');
         $r->setAction('balance');
+        $r->sendRequest($r)->result;
 
         return $r->formatObjectValues(
             $r->sendRequest($r)->result
@@ -45,13 +46,14 @@ class EthereumWallet implements WalletInterface
      */
     public function getTransactions(String $walletAddress)
     {
-        $r = $this->request;
+        $r = $this->createRequest;
         $r->setWalletAddress($walletAddress);
         $r->setModule('account');
         $r->setAction('txlist');
         $r->setStartblock(0);
         $r->setEndblock(99999999);
         $r->setSort('dsc');
+
         return $r->formatObjectValues(
             $r->sendRequest($r)
         );
