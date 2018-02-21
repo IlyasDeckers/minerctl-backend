@@ -27,9 +27,6 @@ class RigController extends Controller
      */
     public function index()
     {
-        $rigs = new Claymore;
-        return view('rigs', [
-            'rigs'       => $rigs->miner_getstat1()
-        ]); 
+        return view('rigs');
     }
 }
