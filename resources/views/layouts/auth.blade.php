@@ -56,12 +56,12 @@
                         </a>
                     </li>
                     @else
-                    <li class="">
+                    <li @if(Request::route()->getName() == 'register') class="active" @endif>
                         <a href="{{ route('register') }}">
                             <i class="material-icons">person_add</i> Register
                         </a>
                     </li>
-                    <li class=" active ">
+                    <li @if(Request::route()->getName() == 'login') class="active" @endif>
                         <a href="{{ route('login') }}">
                             <i class="material-icons">fingerprint</i> Login
                         </a>

@@ -4,16 +4,10 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
+require('./bootstrap');
 
 window.Vue = require('vue');
 var Web3 = require('web3');
-window.axios = require('axios');
-
-window.axios.defaults.headers.common = {
-    'X-CSRF-TOKEN': window.Laravel.csrfToken,
-    'X-Requested-With': 'XMLHttpRequest'
-};
-
 
 if (typeof web3 !== 'undefined') {
   window.web3 = new Web3(web3.currentProvider);

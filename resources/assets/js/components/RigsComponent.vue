@@ -59,8 +59,6 @@
       },
 
       pusher() {
-        Pusher.logToConsole = false;
-
         var pusher = new Pusher(this.pusherKey, {
           cluster: 'eu',
           encrypted: true

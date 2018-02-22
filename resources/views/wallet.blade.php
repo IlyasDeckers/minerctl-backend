@@ -25,7 +25,7 @@
         <div class="card-content">
             <h6 class="category text-gray">Ethereum @if($currency == "etc") Classic @endif</h6>
         <div class="dropdown">
-        <button href="#" class="dropdown-toggle btn btn-info btn-round btn-block" data-toggle="dropdown" aria-expanded="true">{{ $address}}
+        <button href="#" class="dropdown-toggle btn btn-rose btn-round btn-block" data-toggle="dropdown" aria-expanded="true">{{ $address}}
             <b class="caret"></b>
         <div class="ripple-container"></div></button>
         <ul class="dropdown-menu dropdown-menu-left">
@@ -87,7 +87,7 @@
                             </div>
                         </div>
                         <div class="modal-footer text-center">
-                            <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-rose btn-round" data-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
@@ -101,7 +101,7 @@
     <div class="card">
         
         
-        <div class="card-header card-header-icon" data-background-color="blue">
+        <div class="card-header card-header-icon" data-background-color="rose">
             <i class="material-icons">insert_chart</i>
         </div>
         <div class="card-content table-responsive">
@@ -137,7 +137,7 @@
 </div>
 <div class="col-md-12">
     <div class="card" > 
-        <div class="card-header card-header-icon" data-background-color="blue">
+        <div class="card-header card-header-icon" data-background-color="rose">
             <i class="material-icons">insert_chart</i>
         </div>
         <div class="card-content table-responsive">

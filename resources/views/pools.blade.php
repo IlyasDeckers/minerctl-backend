@@ -1,24 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-
-
 <div class="row">
     <div class="col-md-12">
-        <div class="dropdown">
-            <button href="#" class="dropdown-toggle btn btn-info btn-round btn-block" data-toggle="dropdown" aria-expanded="true">Change Pool
-                <b class="caret"></b>
-                <div class="ripple-container"></div></button>
-                <ul class="dropdown-menu dropdown-menu-left">
-                    <li class="dropdown-header">Select the pool to display</li>
-                    @foreach($wallets as $wallet)
-                    <li>
-                        <a href="{{ route('pools', ['walletAddress' => $wallet->address]) }}">{{ $wallet->address }} ({{ $wallet->currency }})</a>
-                    </li>
-                    @endforeach
-                </ul>
-            </div>
-        </div>
         <div class="col-lg-3 col-md-6 col-sm-6">
             <div class="card card-stats">
                 <div class="card-header" data-background-color="orange">
@@ -40,7 +24,7 @@
         </div>
         <div class="col-lg-3 col-md-6 col-sm-6">
             <div class="card card-stats">
-                <div class="card-header" data-background-color="blue">
+                <div class="card-header" data-background-color="rose">
                     <i class="fa fa-briefcase "></i>
                 </div>
                 <div class="card-content">
@@ -67,7 +51,7 @@
                 </div>
                 <div class="card-footer">
                     <div class="stats">
-                        <i class="material-icons">local_offer</i> Tracked from <a target="_blank" href="https://ethermine.org/miners/{{ $wallet->address }}">ethermine.org</a>
+                        <i class="material-icons">local_offer</i> Tracked from <a target="_blank" href="https://ethermine.org/miners/{{ $wallet_address }}">ethermine.org</a>
                     </div>
                 </div>
             </div>
@@ -93,7 +77,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                <h4 class="card-title">Hashrate</h4>
+                    <h4 class="card-title">Hashrate</h4>
                 </div>
                 <div class="card-content">
                     {!! $chartjs->render() !!}
@@ -114,26 +98,24 @@
                                 <th>To</th>
                                 <th>Amount</th>
                                 <th>TX</th>
-                            </tr></thead>
-                            <tbody>
-                                @foreach($payments as $payment)
-                                <tr>
-                                    <td>{{ $payment->paidOn }}</td>
-                                    <td>{{ $payment->start }}</td>
-                                    <td>{{ $payment->end }}</td>
-                                    <td>{{ substr($payment->amount, 0, 7) }} eth</td>
-                                    <td><a href="https://www.etherchain.org/tx/{{ $payment->txHash }}">{{ substr($payment->txHash, 0, 15) . '...' }}</a></td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($payments as $payment)
+                            <tr>
+                                <td>{{ $payment->paidOn }}</td>
+                                <td>{{ $payment->start }}</td>
+                                <td>{{ $payment->end }}</td>
+                                <td>{{ substr($payment->amount, 0, 7) }} eth</td>
+                                <td><a href="https://www.etherchain.org/tx/{{ $payment->txHash }}">{{ substr($payment->txHash, 0, 15) . '...' }}</a></td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
-
-            
         </div>
-
-
-
-        @endsection
+    </div>
+</div>
+@endsection
+        
