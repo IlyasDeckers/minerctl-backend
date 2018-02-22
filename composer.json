@@ -19,7 +19,8 @@
         "milon/barcode": "^5.2",
         "pusher/pusher-http-laravel": "^4.0",
         "thiagof/laravelrpc": "^0.2.2",
-        "uxweb/sweet-alert": "^1.4"
+        "uxweb/sweet-alert": "^1.4",
+        "ilyasdeckers/web3php": "dev-master"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
