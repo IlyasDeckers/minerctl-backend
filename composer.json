@@ -6,20 +6,21 @@
     "type": "project",
     "require": {
         "php": ">=7.0.0",
+        "api-clients/pusher": "^1.1",
         "barryvdh/laravel-cors": "^0.11.0",
         "clue/socket-raw": "~1.2",
         "fideloper/proxy": "~3.3",
         "fx3costa/laravelchartjs": "^2.3",
         "graze/guzzle-jsonrpc": "~3.0",
         "guzzlehttp/guzzle": "^6.3",
+        "ilyasdeckers/web3php": "dev-master",
         "laravel/framework": "5.5.*",
         "laravel/passport": "4.0.3",
         "laravel/tinker": "~1.0",
         "milon/barcode": "^5.2",
         "pusher/pusher-http-laravel": "^4.0",
         "thiagof/laravelrpc": "^0.2.2",
-        "uxweb/sweet-alert": "^1.4",
-        "ilyasdeckers/web3php": "dev-master"
+        "uxweb/sweet-alert": "^1.4"
     },
     "require-dev": {
         "filp/whoops": "~2.0",

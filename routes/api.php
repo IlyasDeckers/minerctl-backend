@@ -36,3 +36,19 @@ Route::middleware('auth:api')->get('/wallet/transactions/{walletAddress}', funct
 });
 
 Route::middleware('auth:api')->get('/pools/{walletAddress}', 'Pools\PageController@index');
+
+Route::middleware('auth:api')->post('data/claymore', function (Request $request) {
+    $data = $request->data;
+
+    $store = new \App\MinerStatistics();
+    $store->user_id = $data['userId'];
+    $store->rigname = $data['rigname'];
+    $store->data = json_encode($data['response']);
+
+    try {
+        $store->save();
+        return response()->json($store, 200);
+    } catch (\Exception $e) {
+        throw new \Exception($e->getMessage());
+    }
+});

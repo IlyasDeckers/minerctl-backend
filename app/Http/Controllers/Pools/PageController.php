@@ -31,7 +31,7 @@ class PageController extends EthermineController
      */
     public function index($walletAddress, Request $request)
     {
-        $this->currency = Wallet::where('address', $walletAddress)->first()->currency;
+        $this->currency = Wallet::where('address', strtolower($walletAddress))->first()->currency;
 
         if ($this->currency == 'etc') {
             $this->url = 'https://api-etc.ethermine.org/miner/';
