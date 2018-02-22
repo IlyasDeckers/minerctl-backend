@@ -30,3 +30,8 @@ php artisan migrate
 # Generate keys
 php artisan key:generate && php artisan passport:install
 ```
+The final step is to set up a cron job
+``` bash
+crontab -e
+* * * * * php /path-to-your-project/artisan schedule:run >> /dev/null 2>&1
+```
