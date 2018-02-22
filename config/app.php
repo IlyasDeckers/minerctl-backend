@@ -169,13 +169,14 @@ return [
          */
 
         UxWeb\SweetAlert\SweetAlertServiceProvider::class,
-        Thiagof\LaravelRPC\RpcServiceProvider::class,
         Fx3costa\LaravelChartJs\Providers\ChartjsServiceProvider::class,
         Milon\Barcode\BarcodeServiceProvider::class,
         Barryvdh\Cors\ServiceProvider::class,
         Pusher\Laravel\PusherServiceProvider::class,
 
         App\Acme\Wallets\WalletsServiceProvider::class,
+
+        IlyasDeckers\Web3PHP\Providers\Web3PHPServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -243,8 +244,8 @@ return [
 
         'Wallets' => App\Acme\Facades\WalletsFacade::class,
         'wei2eth' => App\Helpers\wei2eth::class,
-        'Claymore' => App\Acme\Api\Claymore::class,
- 
+
+        'Ethereum' => IlyasDeckers\Web3PHP\Facades\EthereumFacade::class,
     ],
 
 ];

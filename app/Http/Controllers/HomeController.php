@@ -27,6 +27,9 @@ class HomeController extends Controller
   */
   public function index()
   {
+    $eth = new \IlyasDeckers\Web3PHP\Ethereum('127.0.0.1',8545);
+    dd($eth->eth_getBalance());
+
     if (!Auth::user()->wallets->first()) {
       return view('auth.step2');
     }

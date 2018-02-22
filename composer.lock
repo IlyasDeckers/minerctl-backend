@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e17825aeab62fcd94a33eb8b84b0edce",
-    "content-hash": "8e0c052dfccbb9eaf527351b1645efe2",
+    "hash": "0c20cfc2be650e17df170a148c3046af",
+    "content-hash": "8f7555c55b8402cc964355bb16ad593c",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -171,46 +171,6 @@
                 "unix"
             ],
             "time": "2015-03-18 23:48:01"
-        },
-        {
-            "name": "czpechy/claymore-api",
-            "version": "v1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/czPechy/ClaymoreJsonPHP.git",
-                "reference": "1a3ed02bb1e544450fcf7b1eb330a61911efa6c6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/czPechy/ClaymoreJsonPHP/zipball/1a3ed02bb1e544450fcf7b1eb330a61911efa6c6",
-                "reference": "1a3ed02bb1e544450fcf7b1eb330a61911efa6c6",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.4.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "czPechy\\Claymore\\": "src/"
-                },
-                "files": [
-                    "src/exceptions.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Martin Pecha",
-                    "email": "martin@pecha.pro"
-                }
-            ],
-            "description": "Get your miner stats from Claymore Dual Miner",
-            "homepage": "https://github.com/czPechy/ClaymoreJsonPHP",
-            "time": "2018-01-18 18:00:06"
         },
         {
             "name": "defuse/php-encryption",
