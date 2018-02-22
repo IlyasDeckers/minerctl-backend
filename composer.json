@@ -12,7 +12,6 @@
         "fx3costa/laravelchartjs": "^2.3",
         "graze/guzzle-jsonrpc": "~3.0",
         "guzzlehttp/guzzle": "^6.3",
-        "ilyasdeckers/web3php": "dev-master",
         "laravel/framework": "5.5.*",
         "laravel/passport": "4.0.3",
         "laravel/tinker": "~1.0",
