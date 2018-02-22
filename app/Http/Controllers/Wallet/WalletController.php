@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Wallet;
 
 use Auth;
 use Wallets;
+use Ethereum;
 use Exception;
 use App\Wallet;
 use Illuminate\Http\Request;
@@ -61,8 +62,7 @@ class WalletController extends Controller
     }
 
     try {
-      $eth = new \App\Acme\Api\Ethereum(env('INFURA_URL'), '443');
-      $eth = $eth->eth_getBalance($address);
+      $eth = Ethereum::eth_getBalance($address);
     } catch (\Exception $e) {
       return redirect()->back()->with('walletError', 'Invalid address!');
     }
