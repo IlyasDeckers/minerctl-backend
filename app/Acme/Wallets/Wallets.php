@@ -62,7 +62,7 @@ class Wallets
   public function getCurrency($walletAddress, $return = false)
   {   
     try {
-      $this->currency = Wallet::where('address', $walletAddress)
+      $this->currency = Wallet::where('address', strtolower($walletAddress))
       ->first()
       ->currency;
     } catch (Exception $e) {
