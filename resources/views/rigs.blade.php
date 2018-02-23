@@ -38,16 +38,6 @@
             </div>
         </div>
     </div>
-    @endif
-    @endforeach
-    @else
-    <div class="col-md-12">
-        <div class="text-center">
-            <i class="material-icons" style="font-size: 80px; margin-top: 100px;">cloud_off</i>
-            <h3>No Running Rigs</h3>
-        </div>
-    </div>
-    @endif
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
@@ -59,5 +49,15 @@
             
         </div>
     </div>
+    @endif
+    @endforeach
+    @else
+    <div class="col-md-12">
+        <div class="text-center">
+            <i class="material-icons" style="font-size: 80px; margin-top: 100px;">cloud_off</i>
+            <h3>No Running Rigs</h3>
+        </div>
+    </div>
+    @endif
 </div>
 @endsection
