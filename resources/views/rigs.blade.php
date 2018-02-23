@@ -7,10 +7,12 @@
     @if($value !== [])
     <div class="col-md-12">
         <div class="card">
-            <div class="card-header">
+            <!-- <div class="card-header">
                 <h4 class="card-title">{{ $key }}</h4>
-            </div>
+            </div>-->
             <div class="card-content">
+                <p><b>Rig name:</b> {{ $key }}</p>
+                <p><b>Total hashrate:</b> {{ $value->data['hashrate'] }} MH/s</p>
                 <div class="table-responsive">
                     <table class="table">
                         <thead class="text-primary">
@@ -22,7 +24,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach(json_decode($value[0]['data'],true)['gpus'] as $k => $v)
+                            @foreach($value->data['gpus'] as $k => $v)
                             <tr>
                                 <td>gpu{{ $k }}</td>
                                 <td>{{ $v['hashrates'] }} MH/s</td>
@@ -46,7 +48,7 @@
         </div>
     </div>
     @endif
-    <!-- <div class="col-md-12">
+    <div class="col-md-12">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title">Hashrate</h4>
@@ -56,6 +58,6 @@
             </div>
             
         </div>
-    </div> -->
+    </div>
 </div>
 @endsection
