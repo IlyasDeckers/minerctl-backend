@@ -48,9 +48,9 @@ class RigController extends Controller
                 ->get()
                 ->toArray();
 
-            if (isset($tableData)) {
+            if (isset($tableData) && $tableData !== []) {
                 $table[$value] = $tableData;
-            }
+            } 
         }
 
         return view('rigs', [
