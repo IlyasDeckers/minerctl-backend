@@ -45,9 +45,8 @@ class RigController extends Controller
         // For each rig, get the last known stats between now and 10 seconds ago
         $table = (object) [];
         foreach($rigs as $key => $value) {
-            $tableData = $stats[$value]
-                ->where('created_at','>=', Carbon::now()->subSeconds(10));
-            
+            $tableData = $stats[$value]->where('created_at','>=', Carbon::now()->subSeconds(10));
+
             if (isset($tableData[0]) && $tableData !== []) {
                 $table->$key = (object) $tableData[0];
                 $table->$key->data = json_decode($tableData[0]['data'], true);

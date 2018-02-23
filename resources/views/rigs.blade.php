@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="row">
-    @if($rigs !== [])
+    @if(count((array) $rigs) > 0)
     @foreach($rigs as $key => $value)
     @if($value !== [])
     <div class="col-md-12">
