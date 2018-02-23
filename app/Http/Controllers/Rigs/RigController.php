@@ -10,6 +10,8 @@ use App\Http\Controllers\Controller;
 
 class RigController extends Controller
 {
+    protected $statistics;
+
     /**
      * Create a new controller instance.
      *
@@ -27,47 +29,101 @@ class RigController extends Controller
      */
     public function index()
     {
-        // Get the statistics from the database reported by the miner
-        // Group them by the rig name
-        $stats = MinerStatistics::where('user_id', Auth::user()->id)
-            ->where('created_at','>=', Carbon::now()->subMinutes(120))
-            ->orderBy('created_at', 'desc')
-            ->take(300)
-            ->get()
-            ->groupBy('rigname');
+        $this->statistics = $this->getRigsStatistics(120);
+        return view('rigs', [
+            'rigs' => $this->getLastStatistics(),
+            'chart' => $this->chart()
+        ]);
+    }
 
-        // Get the rig names
-        $rigs = (object) [];
-        foreach($stats as $key => $value) {
-            $rigs->$key = $key;
+    
+    /**
+     * Returns the miner statistics in a collection 
+     * grouped by rig name.
+     *
+     * @param integer $offset
+     * @param integer $limit
+     * @param string $order (asc, desc)
+     * @return void
+     */
+    public function getRigsStatistics($offset, $limit = 300, $order = 'desc') 
+    {
+        try {
+            return MinerStatistics::where('user_id', auth()->user()->id)
+                ->where('created_at','>=', Carbon::now()->subMinutes($offset))
+                ->orderBy('created_at', $order)
+                ->take($limit)
+                ->get()
+                ->groupBy('rigname');
+        } catch (Exception $e) {
+            // Still waiting...
         }
         
-        // For each rig, get the last known stats between now and 10 seconds ago
+    }
+
+    public function getRigs() 
+    {
+        if(!$this->statistics) {
+            $this->statistics = $this->getRigsStatistics(120);
+        }
+
+        $rigs = (object) [];
+        foreach($this->statistics as $key => $value) {
+            $rigs->$key = $key;
+        }
+
+        return $rigs;
+    }
+
+    public function getLastStatistics() 
+    {
+        if(!$this->statistics) {
+            $this->statistics = $this->getRigsStatistics(120);
+        }
+
         $table = (object) [];
-        foreach($rigs as $key => $value) {
-            $tableData = $stats[$value]->where('created_at','>=', Carbon::now()->subSeconds(10));
+        foreach($this->getRigs() as $key => $value) {
+            $tableData = $this->statistics[$value]->where('created_at','>=', Carbon::now()->subSeconds(10));
 
             if (isset($tableData[0]) && $tableData !== []) {
                 $table->$key = (object) $tableData[0];
                 $table->$key->data = json_decode($tableData[0]['data'], true);
             } 
         }
-
-        return view('rigs', [
-            'rigs' => $table,
-            'chart' => $this->chart($stats)
-        ]);
     }
 
-    public function chart($data) 
+    private function chart() 
     {
         $start = Carbon::now('Europe/Brussels');
         $end = Carbon::now('Europe/Brussels')->subMinutes(120);
         $timeLabels = $this->createTimeRange($end, $start);
 
+        $chart = app()->chartjs
+            ->name('lineChartTest')
+            ->type('line')
+            ->size(['width' => '100%', 'height' => '20%'])
+            ->labels($timeLabels)
+            ->datasets($this->createDatasets($this->getChartData($timeLabels)))
+            ->optionsRaw("{ 
+                scales: {
+                    yAxes: [{
+                        display: true,
+                        ticks: {
+                            suggestedMin: 0,    // minimum will be 0, unless there is a lower value.
+                            beginAtZero: true   // minimum value will be 0.
+                        }
+                    }]
+                }
+            }");
+
+        return $chart;
+    }
+
+    private function getChartData($timeLabels) 
+    {
         $chartData = (object) [];
         // Go over each returned rig
-        foreach($data as $key => $value) {
+        foreach($this->statistics as $key => $value) {
 
             $arr = array(); // Create an empty array to store our results
             // Go over all our timeLabels
@@ -102,6 +158,25 @@ class RigController extends Controller
             $chartData->$key = $arr;
         }
 
+        return $chartData;
+    }
+
+    private function chartData($label, $data, $color)
+    {
+        return [
+            "label" => $label,
+            'backgroundColor' => "rgba(" . $color . ", 0.1)",
+            'borderColor' => "rgba(" . $color . ", 0.7)",
+            "pointBorderColor" => "rgba(" . $color . ", 0, 0.7)",
+            "pointBackgroundColor" => "rgba(" . $color . ", 0.7)",
+            "pointHoverBackgroundColor" => "#fff",
+            "pointHoverBorderColor" => "rgba(220,220,220,1)",
+            'data' => $data,
+        ];
+    }
+
+    private function createDatasets($chartData) 
+    {
         $datasets = [];
         $n = 0;
         foreach($chartData as $key => $value) {
@@ -117,41 +192,8 @@ class RigController extends Controller
 
             $datasets[] = $this->chartData($key, array_reverse($data), $colors[$n++]);
         }
-        
 
-        $chart = app()->chartjs
-            ->name('lineChartTest')
-            ->type('line')
-            ->size(['width' => '100%', 'height' => '20%'])
-            ->labels($timeLabels)
-            ->datasets($datasets)
-            ->optionsRaw("{ 
-                scales: {
-                    yAxes: [{
-                        display: true,
-                        ticks: {
-                            suggestedMin: 0,    // minimum will be 0, unless there is a lower value.
-                            beginAtZero: true   // minimum value will be 0.
-                        }
-                    }]
-                }
-            }");
-
-        return $chart;
-    }
-
-    public function chartData($label, $data, $color)
-    {
-        return [
-            "label" => $label,
-            'backgroundColor' => "rgba(" . $color . ", 0.1)",
-            'borderColor' => "rgba(" . $color . ", 0.7)",
-            "pointBorderColor" => "rgba(" . $color . ", 0, 0.7)",
-            "pointBackgroundColor" => "rgba(" . $color . ", 0.7)",
-            "pointHoverBackgroundColor" => "#fff",
-            "pointHoverBorderColor" => "rgba(220,220,220,1)",
-            'data' => $data,
-        ];
+        return $datasets;
     }
 
     private function createTimeRange($start, $end, $interval = '5 mins', $format = '24') {
