@@ -81,15 +81,17 @@ class RigController extends Controller
             $this->statistics = $this->getRigsStatistics(120);
         }
 
-        $table = (object) [];
+        $response = (object) [];
         foreach($this->getRigs() as $key => $value) {
             $tableData = $this->statistics[$value]->where('created_at','>=', Carbon::now()->subSeconds(10));
 
             if (isset($tableData[0]) && $tableData !== []) {
-                $table->$key = (object) $tableData[0];
-                $table->$key->data = json_decode($tableData[0]['data'], true);
+                $response->$key = (object) $tableData[0];
+                $response->$key->data = json_decode($tableData[0]['data'], true);
             } 
         }
+
+        return $response;
     }
 
     private function chart() 
