@@ -42,16 +42,42 @@ class PageController extends EthermineController
         if ($request->ajax()) {
             return [$this->getEthermineStats()];
         }
-
+        $stats = $this->getEthermineStats();
         return view('pools', [
             'wallets' => Auth::user()->wallets,
             'chartjs' => $this->hashChart(),
             'wallet_balance'  => Wallets::getWallet($walletAddress)->value,
-            'ethermine_stats' => $this->getEthermineStats(), 
+            'ethermine_stats' => $stats, 
             'payments' => $this->getPayments(),
             'currency' => $this->currency,
-            'wallet_address' => $walletAddress
+            'wallet_address' => $walletAddress,
+            'estimate' => $this->getEstimatedPayout($stats)
         ]); 
+    }
+
+    private function getEstimatedPayout($stats) 
+    {
+        $min_eur = $this->convertCurrency($stats->usdPerMin, 'USD', 'EUR');
+        return (object) [
+            'eur' => [
+                'hour'  => round($min_eur * 60, 2) . ' EUR',
+                'day'   => round($min_eur * 1440, 2) . ' EUR',
+                'week'  => round($min_eur * 10080,2) . ' EUR',
+                'month' => round($min_eur * 43829.0639, 2) . ' EUR'
+            ],
+            'eth' => [
+                'hour'  => round($stats->coinsPerMin * 60, 6) . ' ' . strtoupper($this->currency),
+                'day'   => round($stats->coinsPerMin * 1440, 6) . ' ' . strtoupper($this->currency),
+                'week'  => round($stats->coinsPerMin * 10080, 6) . ' ' . strtoupper($this->currency),
+                'month' => round($stats->coinsPerMin * 43829.0639, 6) . ' ' . strtoupper($this->currency)
+            ],
+            'usd' => [
+                'hour'  => round($stats->usdPerMin * 60, 6) . ' USD',
+                'day'   => round($stats->usdPerMin * 1440, 6) . ' USD',
+                'week'  => round($stats->usdPerMin * 10080, 6) . ' USD',
+                'month' => round($stats->usdPerMin * 43829.0639, 6) . ' USD'
+            ]
+        ];
     }
 
     public function getPayments()
@@ -97,7 +123,7 @@ class PageController extends EthermineController
             $averageHashrate[] = $this->convertHashrate($d->averageHashrate);
             $currentHashrate[] = $this->convertHashrate($d->currentHashrate);
             $reportedHashrate[] = $this->convertHashrate($d->reportedHashrate);
-            $labels[] = $d->time;
+            $labels[] = \Carbon\Carbon::createFromTimestamp($d->time)->format('H:i');
         }
 
         $chart = app()->chartjs
@@ -178,8 +204,16 @@ class PageController extends EthermineController
         }
     }
 
-    public function convertHashrate($hashrate)
+    private function convertHashrate($hashrate)
     {
         return substr($hashrate / 1000000, 0, 5);
     }
+
+    private function convertCurrency($amount, $from, $to){
+        $conv_id = "{$from}_{$to}";
+        $string = file_get_contents("http://free.currencyconverterapi.com/api/v3/convert?q=" . $conv_id . "&compact=ultra");
+        $json_a = json_decode($string, true);
+      
+        return $amount * round($json_a[$conv_id], 4);
+      }
 }
