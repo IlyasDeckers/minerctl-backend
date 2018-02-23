@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group form-button text-center">
-                    <button type="submit" class="btn btn-fill btn-info">Generate Wallet</button>
+                    <button type="submit" class="btn btn-fill btn-rose">Generate Wallet</button>
                 </div>
             </div>
         </div>
@@ -25,10 +25,10 @@
         <div class="col-md-12" v-show="download">
             <div class="row text-center">
                 <h2>Save your <code>Keystore</code> File.</h2>
-                <p><b>Do not lose this file and chosen password!</b> It cannot be recovered! </p>
+                <p><b>Do not lose this file and chosen password! It cannot be recovered!</b> </p>
                 <pre><b>address:</b>{{ wallet.encrypted.address }}</pre>
                 <div class="form-group form-button">
-                    <button type="submit" @click="downloadKeystore()" class="btn btn-fill btn-info">Download Keystore</button>
+                    <button type="submit" @click="downloadKeystore()" class="btn btn-fill btn-rose">Download Keystore</button>
                 </div>
             </div>
         </div>

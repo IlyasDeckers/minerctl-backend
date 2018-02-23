@@ -10,35 +10,19 @@
 
 <template>
     <div>
-        <div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <span>
-                            Personal Access Tokens
-                        </span>
-
-                        <a class="action-link" @click="showCreateTokenForm">
-                            Create New Token
-                        </a>
-                    </div>
-                </div>
-
-                <div class="panel-body">
+        <div class="col-md-12">
+            <!-- Personal Access Tokens -->
+            <div class="card-content table-responsive">
+                
+                <div class="col-md-12">
+                    <div v-if="tokens.length === 0">
                     <!-- No Tokens Notice -->
-                    <p class="m-b-none" v-if="tokens.length === 0">
-                        You have not created any personal access tokens.
+                    <p  class="text-center">
+                        <i class="material-icons" style="font-size:150px;">error_outline</i>
+                        <h4 class="text-center">You don't have any any  API tokens.</h4>
                     </p>
-
-                    <!-- Personal Access Tokens -->
-                    <table class="table table-borderless m-b-none" v-if="tokens.length > 0">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-
+                    </div>
+                    <table class="table table-hover">
                         <tbody>
                             <tr v-for="token in tokens">
                                 <!-- Client Name -->
@@ -47,16 +31,26 @@
                                 </td>
 
                                 <!-- Delete Button -->
-                                <td style="vertical-align: middle;">
-                                    <a class="action-link text-danger" @click="revoke(token)">
-                                        Delete
-                                    </a>
+                                <td class="td-actions text-right">
+                                    <!--<button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs">
+                                        <i class="material-icons">edit</i>-->
+                                    <div class="ripple-container"></div></button>
+                                    <button @click="revoke(token)" type="button" rel="tooltip" title="" class="btn btn-danger btn-simple btn-xs">
+                                        <i class="material-icons">close</i>
+                                    </button>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
+                <div class="col-md-12 text-center">
+
+                    <div class="form-group form-button">
+                        <button type="submit" @click="showCreateTokenForm" class="btn btn-fill btn-rose">Create New Token</button>
+                    </div>
+                </div>
             </div>
+
         </div>
 
         <!-- Create Token Modal -->

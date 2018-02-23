@@ -56,16 +56,28 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="">
+                    <li @if(Request::route()->getName() === 'pools') class="active" @endif>
                         <a href="{{ route('pools', ['walletAdress' => Auth::user()->wallets->first()->address]) }}">
                         <i class="material-icons">timeline</i>
                             <p>Pools</p>
                         </a>
                     </li>
-                    <li class="">
+                    <li @if(Request::route()->getName() === 'rigs') class="active" @endif>
                         <a href="{{ route('rigs') }}">
                             <i class="material-icons">settings_input_component</i>
                             <p>Rigs</p>
+                        </a>
+                    </li>
+                    <li @if(Request::route()->getName() === 'userProfile') class="active" @endif>
+                        <a href="{{ route('userProfile') }}">
+                            <i class="material-icons">settings</i>
+                            <p>Settings</p>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <i class="material-icons">power_settings_new</i>
+                            <p>Logout</p>
                         </a>
                     </li>
                 </ul>

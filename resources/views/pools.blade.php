@@ -11,13 +11,18 @@
                 <div class="card-content">
                     <p class="category">Current Hashrate</p>
                     <h3 class="title" rel="tooltip" data-placement="bottom" data-original-title="Your effective current hashrate. It is calculated according your submitted shares using a 60 minute window. It will take up to 2 hours till the displayed hashrate is accurate. Deviations from your local hashrate are normal.">
-                        {{ $ethermine_stats->reportedHashrate }}<small>Mh/s</small>
+                        {{ $ethermine_stats->reportedHashrate }}<small> Mh/s</small>
                     </h3>
                 </div>
                 <div class="card-footer">
                     <div class="stats">
-                        <i class="material-icons text-danger">warning</i>
-                        <a href="#pablo">Get More Space...</a>
+                        @if($ethermine_stats->reportedHashrate === 0)
+                        <i class="material-icons text-success">highlight_off</i>
+                        Not mining
+                        @else
+                        <i class="material-icons text-success">done</i>
+                        Currently mining
+                        @endif
                     </div>
                 </div>
             </div>
@@ -33,7 +38,7 @@
                 </div>
                 <div class="card-footer">
                     <div class="stats">
-                        <i class="material-icons">update</i> Manage your workers
+                        <i class="material-icons">settings</i> Manage your <a href="{{ route('rigs') }}">workers</a>
                     </div>
                 </div>
             </div>
@@ -62,30 +67,26 @@
                     <i class="fa fa-money"></i>
                 </div>
                 <div class="card-content">
-                    <p class="category">Wallet balance</p>
+                    <p class="category">Wallet Balance</p>
                     <h3 class="title">{{ substr($wallet_balance, 0, 6) }}
                         <small>{{ strtoupper($currency) }}</small>
                     </h3>
                 </div>
                 <div class="card-footer">
                     <div class="stats">
-                        <i class="material-icons">date_range</i> View Wallet
+                        <i class="material-icons">search</i> View <a href="{{ route('wallets', ['walletAdress' => Auth::user()->wallets->first()->address]) }}">wallet</a>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">Hashrate</h4>
-                </div>
                 <div class="card-content">
                     {!! $chartjs->render() !!}
                 </div>
-                
             </div>
         </div>
-        <div class="col-md-12">
+        <div class="col-md-7">
             <div class="card">
                 <div class="card-header">
                     <h4 class="title">Payouts</h4>
@@ -106,12 +107,41 @@
                                 <td>{{ $payment->paidOn }}</td>
                                 <td>{{ $payment->start }}</td>
                                 <td>{{ $payment->end }}</td>
-                                <td>{{ substr($payment->amount, 0, 7) }} eth</td>
+                                <td>{{ substr($payment->amount, 0, 7) }} ETH</td>
                                 <td><a href="https://www.etherchain.org/tx/{{ $payment->txHash }}">{{ substr($payment->txHash, 0, 15) . '...' }}</a></td>
                             </tr>
                             @endforeach
                         </tbody>
                     </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="title">Estimated Earnings</h4>
+                </div>
+                <div class="card-content table-responsive">
+                        <table class="table table-hover">
+                                <thead class="text-warning">
+                                    <tr>
+                                        <th>hour</th>
+                                        <th>day</th>
+                                        <th>week</th>
+                                        <th>month</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($estimate as $k => $estimate)
+                                    <tr>
+                                        <td>{{ $estimate['hour'] }}</td>
+                                        <td>{{ $estimate['day'] }}</td>
+                                        <td>{{ $estimate['week'] }}</td>
+                                        <td>{{ $estimate['month'] }}</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
                 </div>
             </div>
         </div>
