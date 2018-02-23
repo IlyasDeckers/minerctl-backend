@@ -52,3 +52,6 @@ Route::middleware('auth:api')->post('data/claymore', function (Request $request)
         throw new \Exception($e->getMessage());
     }
 });
+
+Route::middleware('auth:api')->get('/rigs', 'Rigs\RigsController@getRigs');
+Route::middleware('auth:api')->get('/rigs/statistics', 'Rigs\RigsController@getRigsStatistics');

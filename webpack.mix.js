@@ -23,10 +23,6 @@ mix.webpackConfig({
 	'resources/assets/js/lib/perfect-scrollbar.jquery.min.js',
 	'resources/assets/js/lib/jquery.validate.min.js',
 	'resources/assets/js/lib/arrive.min.js',
-	'resources/assets/js/lib/jquery.bootstrap-wizard.js',
-	'resources/assets/js/lib/bootstrap-notify.js',
-	'resources/assets/js/lib/nouislider.min.js',
-	'resources/assets/js/lib/jquery.select-bootstrap.js',
 	'resources/assets/js/lib/sweetalert2.js',
 	'resources/assets/js/lib/material-dashboard.js'
 ], 'public/js/app.js')
