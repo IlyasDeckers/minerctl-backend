@@ -2,8 +2,53 @@
 
 @section('content')
 <div class="row">
+    @foreach($rigs as $key => $value)
+    @if($value !== [])
     <div class="col-md-12">
-        <rigs-component></rigs-component>
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">{{ $key }}</h4>
+            </div>
+            <div class="card-content">
+                <div class="table-responsive">
+                    <table class="table">
+                      <thead class="text-primary">
+                        <tr>
+                          <th>GPU</th>
+                          <th>Hashrate</th>
+                          <th>Temperature</th>
+                          <th>Fanspeed</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        @foreach(json_decode($value[0]['data'],true)['gpus'] as $k => $v)
+                        <tr>
+                          <td>gpu{{ $k }}</td>
+                          <td>{{ $v['hashrates'] }} MH/s</td>
+                          <td>{{ $v['temperature'] }} &#176;C</td>
+                          <td>{{ $v['fanSpeed'] }} %</td>
+                        </tr>
+                        @endforeach
+                      </tbody>
+                    </table>
+                  </div>
+            </div>
+            
+        </div>
     </div>
+    @endif
+    @endforeach
+
+    <!-- <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Hashrate</h4>
+            </div>
+            <div class="card-content">
+                {!! $chart->render() !!}
+            </div>
+            
+        </div>
+    </div> -->
 </div>
 @endsection
