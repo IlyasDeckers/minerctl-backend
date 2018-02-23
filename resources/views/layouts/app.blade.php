@@ -84,7 +84,7 @@
             </div>
         </div>
         <div class="main-panel">
-            <div class="content" >
+            <div class="content" style="margin-top:25px;">
                 <div class="container-fluid">
                     <div class="row">
                     @yield('content')
