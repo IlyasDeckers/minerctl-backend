@@ -175,6 +175,7 @@ return [
         Pusher\Laravel\PusherServiceProvider::class,
 
         App\Acme\Wallets\WalletsServiceProvider::class,
+        App\Acme\Pools\EthermineServiceProvider::class,
 
         IlyasDeckers\Web3PHP\Providers\Web3PHPServiceProvider::class,
 
@@ -243,6 +244,7 @@ return [
         'Pusher' => Pusher\Laravel\Facades\Pusher::class,
 
         'Wallets' => App\Acme\Facades\WalletsFacade::class,
+        'Ethermine' => App\Acme\Facades\EthermineFacade::class,
         'wei2eth' => App\Helpers\wei2eth::class,
 
         'Ethereum' => IlyasDeckers\Web3PHP\Facades\EthereumFacade::class,
