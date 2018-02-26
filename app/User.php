@@ -32,4 +32,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Wallet::class);
     }
+
+    public function notifications()
+    {
+        return $this->hasMany(Notifications::class);
+    }
 }

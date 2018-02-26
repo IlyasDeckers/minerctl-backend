@@ -23,6 +23,8 @@ class UserController extends Controller
      */
     public function index() 
     {
-    	return view('userprofile');
+    	return view('userprofile', [
+            'page_title' => 'Settings',
+        ]);
     }
 }

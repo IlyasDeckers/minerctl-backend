@@ -31,6 +31,7 @@ class RigController extends Controller
     {
         $this->statistics = $this->getRigsStatistics(120);
         return view('rigs', [
+            'page_title' => 'Mining Rigs',
             'rigs' => $this->getLastStatistics(),
             'chart' => $this->chart()
         ]);
@@ -64,7 +65,7 @@ class RigController extends Controller
     public function getRigs() 
     {
         if(!$this->statistics) {
-            $this->statistics = $this->getRigsStatistics(120);
+            $this->statistics = $this->getRigsStatistics(90);
         }
 
         $rigs = (object) [];
@@ -146,14 +147,14 @@ class RigController extends Controller
                             $hashrate_ = $v->data['hashrate'];
                         }
 
-                        $arr[$time] = $hashrate_;
+                        $arr[$timeLabel] = $hashrate_;
                     } 
                 }
                 
                 // If the set timeLabel has no value set to 0
                 // Rig is not running...
-                if (!isset($arr[$time])) {
-                    $arr[$time] = '0';
+                if (!isset($arr[$timeLabel])) {
+                    $arr[$timeLabel] = '0';
                 }
 
             }

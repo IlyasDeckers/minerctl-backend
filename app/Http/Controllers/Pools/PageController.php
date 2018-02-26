@@ -44,6 +44,7 @@ class PageController extends EthermineController
         }
         $stats = $this->getEthermineStats();
         return view('pools', [
+            'page_title' => 'Pool',
             'wallets' => Auth::user()->wallets,
             'chartjs' => $this->hashChart(),
             'wallet_balance'  => Wallets::getWallet($walletAddress)->value,

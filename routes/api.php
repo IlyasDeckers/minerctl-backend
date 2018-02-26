@@ -51,7 +51,24 @@ Route::middleware('auth:api')->post('data/claymore', function (Request $request)
         $store->save();
         return response()->json($store, 200);
     } catch (\Exception $e) {
-        throw new \Exception($e->getMessage());
+        return response()->json($e->getMessage(), 500);
+    }
+});
+
+Route::middleware('auth:api')->post('data/notification', function (Request $request) {
+    $data = $request->data;
+
+    $store = new \App\Notifications();
+    $store->user_id = $data['userId'];
+    $store->message = $data['message'];
+    $store->read = 0;
+    $store->type = $data['type'];
+
+    try {
+        $store->save();
+        return response()->json($store, 200);
+    } catch (\Exception $e) {
+        return response()->json($e->getMessage(), 500);
     }
 });
 

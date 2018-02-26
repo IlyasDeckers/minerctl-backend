@@ -30,6 +30,7 @@ class WalletController extends Controller
   public function index($walletAddress)
   {
     return view('wallet', [
+      'page_title'    => 'My Wallets',
       'balance'       => (object) Wallets::getWallet($walletAddress),
       'currency'      => Wallets::getCurrency($walletAddress, true),
       'transactions'  => Wallets::getTransactions($walletAddress),
@@ -50,7 +51,9 @@ class WalletController extends Controller
    */
   public function createWallet()
   {
-    return view('createwallet');
+    return view('createwallet', [
+      'page_title' => 'Create Wallet',
+    ]);
   }
 
   public function addWallet(Request $request)

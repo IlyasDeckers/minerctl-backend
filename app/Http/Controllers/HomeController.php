@@ -30,7 +30,9 @@ class HomeController extends Controller
     if (!Auth::user()->wallets->first()) {
       return view('auth.step2');
     }
-    return view('dashboard');
+    return view('dashboard', [
+      'page_title' => 'Dashboard'
+    ]);
   }
   
   public function step2() 
