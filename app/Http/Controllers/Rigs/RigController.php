@@ -84,7 +84,7 @@ class RigController extends Controller
 
         $response = (object) [];
         foreach($this->getRigs() as $key => $value) {
-            $tableData = $this->statistics[$value]->where('created_at','>=', Carbon::now()->subSeconds(40));
+            $tableData = $this->statistics[$value]->where('created_at','>=', Carbon::now()->subSeconds(60));
 
             if (isset($tableData[0]) && $tableData !== []) {
                 $response->$key = (object) $tableData[0];
