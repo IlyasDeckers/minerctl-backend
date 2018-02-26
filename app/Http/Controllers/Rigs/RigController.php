@@ -46,7 +46,7 @@ class RigController extends Controller
      * @param string $order (asc, desc)
      * @return void
      */
-    public function getRigsStatistics($offset, $limit = 300, $order = 'desc') 
+    public function getRigsStatistics($offset, $limit = 1500, $order = 'desc') 
     {
         try {
             return MinerStatistics::where('user_id', auth()->user()->id)
@@ -83,7 +83,7 @@ class RigController extends Controller
 
         $response = (object) [];
         foreach($this->getRigs() as $key => $value) {
-            $tableData = $this->statistics[$value]->where('created_at','>=', Carbon::now()->subSeconds(10));
+            $tableData = $this->statistics[$value]->where('created_at','>=', Carbon::now()->subSeconds(20));
 
             if (isset($tableData[0]) && $tableData !== []) {
                 $response->$key = (object) $tableData[0];
@@ -129,12 +129,12 @@ class RigController extends Controller
 
             $arr = array(); // Create an empty array to store our results
             // Go over all our timeLabels
-            foreach(array_reverse($timeLabels) as $t => $time) {
+            foreach(array_reverse($timeLabels) as $t => $timeLabel) {
 
                 // Create a range to match the incomming created_at and timeLabels
                 // Needs finetuning!!
-                $start = Carbon::createFromFormat('H:i', $time)->subSeconds(60)->format('H:i:s');
-                $end = Carbon::createFromFormat('H:i', $time)->addSeconds(60)->format('H:i:s');
+                $start = Carbon::createFromFormat('H:i', $timeLabel)->subSeconds(60)->format('H:i:s');
+                $end = Carbon::createFromFormat('H:i', $timeLabel)->addSeconds(60)->format('H:i:s');
 
                 foreach ($value as $k => $v) {
                     // Transform created_at to the same format as $start and $end
