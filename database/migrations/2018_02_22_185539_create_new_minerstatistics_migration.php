@@ -17,7 +17,7 @@ class CreateNewMinerstatisticsMigration extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->string('rigname');
-            $table->string('data');
+            $table->text('data');
             $table->timestamps();
         });
     }

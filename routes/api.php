@@ -39,7 +39,9 @@ Route::middleware('auth:api')->get('/pools/{walletAddress}', 'Pools\PageControll
 
 Route::middleware('auth:api')->post('data/claymore', function (Request $request) {
     $data = $request->data;
-
+    if($data['response'] === []) {
+			return response()->json('No Data',200);
+    }
     $store = new \App\MinerStatistics();
     $store->user_id = $data['userId'];
     $store->rigname = $data['rigname'];
