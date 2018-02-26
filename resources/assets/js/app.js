@@ -5,6 +5,7 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 require('./bootstrap');
+require('sweetalert');
 
 window.Vue = require('vue');
 var Web3 = require('web3');
