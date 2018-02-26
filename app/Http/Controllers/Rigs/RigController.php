@@ -46,7 +46,7 @@ class RigController extends Controller
      * @param string $order (asc, desc)
      * @return void
      */
-    public function getRigsStatistics($offset, $limit = 300, $order = 'desc') 
+    public function getRigsStatistics($offset, $limit = 2500, $order = 'desc') 
     {
         try {
             return MinerStatistics::where('user_id', auth()->user()->id)
@@ -83,7 +83,7 @@ class RigController extends Controller
 
         $response = (object) [];
         foreach($this->getRigs() as $key => $value) {
-            $tableData = $this->statistics[$value]->where('created_at','>=', Carbon::now()->subSeconds(10));
+            $tableData = $this->statistics[$value]->where('created_at','>=', Carbon::now()->subSeconds(40));
 
             if (isset($tableData[0]) && $tableData !== []) {
                 $response->$key = (object) $tableData[0];
