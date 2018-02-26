@@ -114,7 +114,7 @@
                                         <div class="ripple-container"></div></a>
                                         <ul class="dropdown-menu">
                                             @if(count($notifications) > 0)
-                                            @foreach($notifications as $notification )
+                                            @foreach($notifications as $notification)
                                             <li>
                                                 <a href="#">{!! html_entity_decode($notification->message) !!}</a>
                                             </li>
