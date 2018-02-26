@@ -20,10 +20,11 @@ mix.webpackConfig({
 	'resources/assets/js/lib/pusher.min.js',
 	'resources/assets/js/app.js',
 	'resources/assets/js/lib/material.min.js',
+	'resources/assets/js/lib/bootstrap-notify.js',
 	'resources/assets/js/lib/perfect-scrollbar.jquery.min.js',
 	'resources/assets/js/lib/jquery.validate.min.js',
 	'resources/assets/js/lib/arrive.min.js',
-	'resources/assets/js/lib/sweetalert2.js',
-	'resources/assets/js/lib/material-dashboard.js'
+	'resources/assets/js/lib/material-dashboard.js',
+	'resources/assets/js/lib/demo.js'
 ], 'public/js/app.js')
    .sass('resources/assets/sass/app.scss', 'public/css');

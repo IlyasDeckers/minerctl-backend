@@ -1153,7 +1153,7 @@ demo = {
         });
     },
 
-    showNotification: function(from, align) {
+    showNotification: function(type, message) {
         type = ['', 'info', 'success', 'warning', 'danger', 'rose', 'primary'];
 
         color = Math.floor((Math.random() * 6) + 1);
@@ -1163,11 +1163,11 @@ demo = {
             message: "Welcome to <b>Material Dashboard</b> - a beautiful freebie for every web developer."
 
         }, {
-            type: type[color],
-            timer: 3000,
+            type: color[type],
+            timer: 10000,
             placement: {
-                from: from,
-                align: align
+                from: 'top',
+                align: 'right'
             }
         });
     }

@@ -20,7 +20,12 @@ class AppServiceProvider extends ServiceProvider
 
         View::composer(['dashboard', 'rigs', 'pools', 'createWallet', 'wallet', 'createwallet', 'userprofile'], function($view)
         {
-            $view->with('notifications', Auth::user()->notifications->where('read', false)->where('type', 'danger'));
+            $notifications = Auth::user()->notifications->where('read', false)->where('type', 'danger');
+            foreach($notifications as $notification) {
+                $notification->read = 1;
+                $notification->save();
+            }
+            $view->with('notifications', $notifications);
         });
     }
 

@@ -151,6 +151,7 @@
         {{ csrf_field() }}
     </form>
 </body>
+<script src="/js/app.js"></script>
 <script>
     window.Laravel = <?php echo json_encode([
         'csrfToken' => csrf_token(),
@@ -159,16 +160,12 @@
     @if(Auth::user())
     const userId = {{ Auth::user()->id }}
     @endif
-</script>
-<!--   Core JS Files   -->
-<script src="/js/app.js"></script>
 
+</script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<!--   Core JS Files   -->
 <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js"></script>
-
-
-
 @include('sweet::alert')
-
 
 </html>
