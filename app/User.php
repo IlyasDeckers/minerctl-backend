@@ -35,6 +35,6 @@ class User extends Authenticatable
 
     public function notifications()
     {
-        return $this->hasMany(Notifications::class);
+        return $this->hasMany(Notifications::class)->orderBy('created_at', 'desc');
     }
 }

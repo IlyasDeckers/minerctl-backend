@@ -11,7 +11,7 @@
                         <h4 class="card-title">{{ $key }}</h4>
                     </div>-->
                     <div class="card-content">
-                        <p><b>Rig name:</b> {{ $key }}</p>
+                        <p><b>Rig name:</b> {{ $value->rigname }}</p>
                         <p><b>Total hashrate:</b> {{ $value->data->hashrate }} MH/s</p>
                         <div class="table-responsive">
                             <table class="table">

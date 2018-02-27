@@ -112,7 +112,7 @@
                     <div class="text-center">
                         <i class="material-icons" style="font-size: 80px;">event_busy</i>
                         <h3>No Events</h3>
-                        <p><br> </p>
+                        <p><br></p>
                     </div>
                     @endif
                 </div>
