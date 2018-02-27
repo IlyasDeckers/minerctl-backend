@@ -46,26 +46,32 @@ class Ethermine
 
   public function getEstimatedPayout($stats, $currency) 
   {
+    if (!isset($stats->usdPerMin)) {
+      $stats->usdPerMin = 0;
+      $stats->coinsPerMin = 0;
+    }
+
     $min_eur = $this->convertCurrency($stats->usdPerMin, 'USD', 'EUR');
+
     return (object) [
-        'eur' => [
-            'hour'  => round($min_eur * 60, 2) . ' EUR',
-            'day'   => round($min_eur * 1440, 2) . ' EUR',
-            'week'  => round($min_eur * 10080,2) . ' EUR',
-            'month' => round($min_eur * 43829.0639, 2) . ' EUR'
-        ],
-        'eth' => [
-            'hour'  => round($stats->coinsPerMin * 60, 5) . ' ' . strtoupper($currency),
-            'day'   => round($stats->coinsPerMin * 1440, 5) . ' ' . strtoupper($currency),
-            'week'  => round($stats->coinsPerMin * 10080, 5) . ' ' . strtoupper($currency),
-            'month' => round($stats->coinsPerMin * 43829.0639, 5) . ' ' . strtoupper($currency)
-        ],
-        'usd' => [
-            'hour'  => round($stats->usdPerMin * 60, 2) . ' USD',
-            'day'   => round($stats->usdPerMin * 1440, 2) . ' USD',
-            'week'  => round($stats->usdPerMin * 10080, 2) . ' USD',
-            'month' => round($stats->usdPerMin * 43829.0639, 2) . ' USD'
-        ]
+      'eur' => [
+          'hour'  => round($min_eur * 60, 2) . ' EUR',
+          'day'   => round($min_eur * 1440, 2) . ' EUR',
+          'week'  => round($min_eur * 10080,2) . ' EUR',
+          'month' => round($min_eur * 43829.0639, 2) . ' EUR'
+      ],
+      'eth' => [
+          'hour'  => round($stats->coinsPerMin * 60, 5) . ' ' . strtoupper($currency),
+          'day'   => round($stats->coinsPerMin * 1440, 5) . ' ' . strtoupper($currency),
+          'week'  => round($stats->coinsPerMin * 10080, 5) . ' ' . strtoupper($currency),
+          'month' => round($stats->coinsPerMin * 43829.0639, 5) . ' ' . strtoupper($currency)
+      ],
+      'usd' => [
+          'hour'  => round($stats->usdPerMin * 60, 2) . ' USD',
+          'day'   => round($stats->usdPerMin * 1440, 2) . ' USD',
+          'week'  => round($stats->usdPerMin * 10080, 2) . ' USD',
+          'month' => round($stats->usdPerMin * 43829.0639, 2) . ' USD'
+      ]
     ];
   }
 
@@ -81,6 +87,10 @@ class Ethermine
       $res->reportedHashrate = 0;
       $res->activeWorkers = 0;
       $res->unpaid = 0;
+    }
+
+    if(!isset($res->validShares)) {
+      $res->validShares = 0;
     }
   
     $res->unpaid = $this->wei2eth($res->unpaid);
