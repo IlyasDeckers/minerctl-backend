@@ -94,7 +94,7 @@
                 </div>
                 <div class="card-content table-responsive">
                     
-                    @if($notifications_dash)
+                    @if(count($notifications_dash) > 0)
                     <table class="table table-hover">
                         <thead class="text-warning">
                         </thead>

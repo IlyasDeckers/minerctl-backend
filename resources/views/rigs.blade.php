@@ -12,7 +12,7 @@
                     </div>-->
                     <div class="card-content">
                         <p><b>Rig name:</b> {{ $key }}</p>
-                        <p><b>Total hashrate:</b> {{ $value->data['hashrate'] }} MH/s</p>
+                        <p><b>Total hashrate:</b> {{ $value->data->hashrate }} MH/s</p>
                         <div class="table-responsive">
                             <table class="table">
                                 <thead class="text-primary">
@@ -24,12 +24,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($value->data['gpus'] as $k => $v)
+                                    @foreach($value->data->gpus as $k => $v)
                                     <tr>
                                         <td>gpu{{ $k }}</td>
-                                        <td>{{ $v['hashrates'] }} MH/s</td>
-                                        <td>{{ $v['temperature'] }} &#176;C</td>
-                                        <td>{{ $v['fanSpeed'] }} %</td>
+                                        <td>{{ $v->hashrates }} MH/s</td>
+                                        <td>{{ $v->temperature }} &#176;C</td>
+                                        <td>{{ $v->fanSpeed }} %</td>
                                     </tr>
                                     @endforeach
                                 </tbody>

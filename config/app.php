@@ -176,6 +176,7 @@ return [
 
         App\Acme\Wallets\WalletsServiceProvider::class,
         App\Acme\Pools\EthermineServiceProvider::class,
+        App\Acme\Rigs\RigsServiceProvider::class,
 
         IlyasDeckers\Web3PHP\Providers\Web3PHPServiceProvider::class,
 
@@ -245,6 +246,7 @@ return [
 
         'Wallets' => App\Acme\Facades\WalletsFacade::class,
         'Ethermine' => App\Acme\Facades\EthermineFacade::class,
+        'Rigs' => App\Acme\Facades\RigsFacade::class,
         'wei2eth' => App\Helpers\wei2eth::class,
 
         'Ethereum' => IlyasDeckers\Web3PHP\Facades\EthereumFacade::class,
