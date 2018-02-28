@@ -79,6 +79,20 @@
                 </div>
             </div>
         </div>
+        <div class="dropdown">
+            <button href="#" class="dropdown-toggle btn btn-info btn-round btn-block" data-toggle="dropdown" aria-expanded="true">Change Pool
+                <b class="caret"></b>
+                <div class="ripple-container"></div></button>
+                <ul class="dropdown-menu dropdown-menu-left">
+                    <li class="dropdown-header">Select the pool to display</li>
+                    @foreach($wallets as $wallet)
+                    <li>
+                        <a href="{{ route('pools', ['walletAddress' => $wallet->address]) }}">{{ $wallet->address }} ({{ $wallet->currency }})</a>
+                    </li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
         <div class="col-md-12">
             <div class="card">
                 <div class="card-content">

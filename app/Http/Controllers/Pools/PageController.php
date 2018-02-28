@@ -46,7 +46,7 @@ class PageController extends EthermineController
       'wallet_balance'  => Wallets::getWallet($walletAddress)->value,
       'ethermine_stats' => $stats, 
       'payments' => Ethermine::getPayments(),
-      'currency' => $this->currency,
+      'currency' => $currency,
       'wallet_address' => $walletAddress,
       'estimate' => Ethermine::getEstimatedPayout($stats, $currency)
       ]); 

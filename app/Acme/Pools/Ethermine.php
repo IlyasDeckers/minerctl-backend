@@ -16,14 +16,12 @@ class Ethermine
   
   protected $url = 'https://api.ethermine.org/miner/';
   
-  public function __construct()
-  {
-    $this->client = new Client();
-  }
-  
   public function request($function, $method = 'GET')
   {
     $this->client = new Client();
+    if (Wallet::where('address', $this->address)->first()->currency === 'etc') {
+      $this->url = 'https://api-etc.ethermine.org/miner/';
+    }
     
     $res = json_decode($this->client
       ->request($method, $this->url . $this->address . '/' . $function)

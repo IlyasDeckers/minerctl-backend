@@ -13,42 +13,51 @@
             </div>
             <div class="card-content text-center">
                 <h6 class="category text-gray">Ethereum @if($currency == "etc") Classic @endif</h6>
-                <div class="dropdown">
-                    <!--<button href="#" class="dropdown-toggle btn btn-rose btn-round btn-block" data-toggle="dropdown" aria-expanded="true">{{ $address}}
-                        <b class="caret"></b>
-                        <div class="ripple-container"></div>
-                    </button>-->
-                    <small>{{ $address }}</small>
-                    <ul class="dropdown-menu dropdown-menu-left">
-                        <li class="dropdown-header">Select the wallet to display</li>
-                        @foreach($wallets as $wallet)
-                        <li>
-                            <a href="{{ route('wallets', ['walletAddress' => $wallet->address]) }}">{{ $wallet->address }} ({{ $wallet->currency }})</a>
-                        </li>
-                        @endforeach
-                    </ul>
+                <div class="col-md-8 col-md-offset-2">
+                        <div class="col-md-4">
+                                <label>Select wallet:</label>
+                            </div>
+                    <div class="btn-group bootstrap-select show-tick">
+                        
+                        <div class="col-md-8">
+                            <button href="#" class="btn dropdown-toggle bs-placeholder select-with-transition" data-toggle="dropdown" aria-expanded="true">{{ $address}}
+                                <b class="caret"></b>
+                                <div class="ripple-container"></div>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-left">
+                                <li class="dropdown-header">Select the wallet to display</li>
+                                @foreach($wallets as $wallet)
+                                <li>
+                                    <a href="{{ route('wallets', ['walletAddress' => $wallet->address]) }}">{{ $wallet->address }} ({{ $wallet->currency }})</a>
+                                </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <h6 class="category text-gray" ></h6>
-                <h4 class="card-title" rel="tooltip" data-placement="bottom" data-original-title="{{ $balance->value }} {{ strtoupper($currency) }}">{{ substr($balance->value,0,7) }} {{ strtoupper($currency) }}</h4>
-                </br></br>
-                <div class="col-md-6" rel="tooltip" data-placement="bottom" data-original-title="1 {{ strtoupper($currency) }} is &euro;{{ $balance->rate_eur }}">
-                    <p class="description">
-                        EUR
-                    </p>
-                    <p>
-                        &euro;{{ substr($balance->value_eur,0,5) }}
-                    </p>
+                <div class="col-md-12">
+                    <h6 class="category text-gray" ></h6>
+                    <h4 class="card-title" rel="tooltip" data-placement="bottom" data-original-title="{{ $balance->value }} {{ strtoupper($currency) }}">{{ substr($balance->value,0,7) }} {{ strtoupper($currency) }}</h4>
+                    </br></br>
+                    <div class="col-md-6" rel="tooltip" data-placement="bottom" data-original-title="1 {{ strtoupper($currency) }} is &euro;{{ $balance->rate_eur }}">
+                        <p class="description">
+                            EUR
+                        </p>
+                        <p>
+                            &euro;{{ substr($balance->value_eur,0,5) }}
+                        </p>
+                    </div>
+                    
+                    <div class="col-md-6" rel="tooltip" data-placement="bottom" data-original-title="1 {{ strtoupper($currency) }} is ${{ $balance->rate_usd }}">
+                        <p class="description">
+                            USD
+                        </p>
+                        <p>
+                            ${{ substr($balance->value_usd,0,5) }} 
+                        </p>
+                    </div>
+                    <a href="#" class="btn btn-rose btn-round" data-toggle="modal" data-target="#recieveModal">Recieve</a>
                 </div>
-                
-                <div class="col-md-6" rel="tooltip" data-placement="bottom" data-original-title="1 {{ strtoupper($currency) }} is ${{ $balance->rate_usd }}">
-                    <p class="description">
-                        USD
-                    </p>
-                    <p>
-                        ${{ substr($balance->value_usd,0,5) }} 
-                    </p>
-                </div>
-                <a href="#" class="btn btn-rose btn-round" data-toggle="modal" data-target="#recieveModal">Recieve</a>
             </div>
         </div>
         <div class="col-md-8">
